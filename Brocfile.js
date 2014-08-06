@@ -17,17 +17,11 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-var pickFiles = require('broccoli-static-compiler');
-var bootstrapFonts = pickFiles('vendor/bootstrap-sass-official/assets/fonts/bootstrap', {
-    srcDir: '/',
-    destDir: '/assets/bootstrap'
-});
-var bootstrapJS = pickFiles('vendor/bootstrap-sass-official/assets/javascripts', {
-    srcDir: '/',
-    destDir: '/assets/bootstrap'
-});
+app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
+app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
+app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
+app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg');
+app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf');
+app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.woff');
 
-// Merge the bootstrapFonts with the ember app tree
-var mergeTrees = require('broccoli-merge-trees');
-
-module.exports = mergeTrees([app.toTree(),bootstrapFonts,bootstrapJS]);
+module.exports = app.toTree();
